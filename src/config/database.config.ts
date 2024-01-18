@@ -17,7 +17,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
           host: this.configService.get<string>('WRITE_DB_HOST'),
           port: +this.configService.get<number>('WRITE_DB_PORT'),
           username: this.configService.get<string>('WRITE_DB_USERNAME'),
-          database: this.configService.get<string>('WRITE_DB_NAME'),    
+          database: this.configService.get<string>('WRITE_DB_NAME'),
         },
         slaves :[{
           host: this.configService.get<string>('READ_DB_HOST'),
@@ -28,6 +28,9 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       },
       entities: ['dist/**/**/*.entity.{ts,js}'],
       synchronize: false,
+      logging: true,
+      migrations: ['dist/db/migrations/*{.ts,.js}'],
+      migrationsRun: true,
     };
   }
 }
